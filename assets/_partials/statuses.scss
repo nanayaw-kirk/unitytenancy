@@ -1,0 +1,55 @@
+$processing : #ffc84b;
+$approved : #1DB954;
+$cancelled : #FF2F2F;
+$pending : #1B95E0;
+
+.status{
+	padding: 3px 9px;
+	font-size: 12px;
+	border-radius: 4px;
+	@extend .text-small;
+	@extend .uk-text-capitalize;
+}
+
+.processing{
+	background-color :rgba( $processing, 0.2) !important;
+	border : 1px solid  $processing;
+	.fill-processing{
+		background-color: $processing;
+	}
+	span,small,p{
+		color : $processing !important;
+	}
+}
+
+.cancelled,.declined{
+	background-color :rgba( $cancelled, 0.2) !important;
+	border : 1px solid  $cancelled;
+
+	.fill-cancelled,.fill-declined{
+		background-color: $cancelled;
+	}
+	span,small,p{
+		color : $cancelled !important;
+	}
+}
+.approved{
+	background-color :rgba( $approved, 0.2) !important;
+	border : 1px solid  $approved;
+	.fill-approved{
+		background-color: $approved;
+	}
+	span,small,p{
+		color : $approved !important;
+	}
+}
+.pending{
+	background-color :rgba( $pending, 0.2) !important;
+	border : 1px solid  $pending;
+	.fill-pending{
+		background-color: $pending;
+	}
+	span,small,p{
+		color : $pending !important;
+	}
+}
