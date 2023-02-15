@@ -19,7 +19,8 @@ export default {
 
   publicRuntimeConfig : {
     WS : process.env.WS,
-    API : process.env.API
+    API : process.env.API,
+    MAPS_KEY:process.env.MAPS_KEY
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
