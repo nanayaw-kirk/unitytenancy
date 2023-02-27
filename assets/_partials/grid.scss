@@ -13,6 +13,11 @@
 	grid-gap: 10px;
 }
 
+.uno{
+	grid-template-columns: repeat(1, 1fr);
+	grid-gap: 10px;
+}
+
 		/*
 		Media queries for devices larger than regular laptops eg: TV
 		*/

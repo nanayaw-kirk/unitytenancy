@@ -1,5 +1,5 @@
 <template>
-  <div class="grid triad tiny-padding compact-sm">
+  <div class="grid uno compact-sm">
     <div class="uk-padding-small uk-box-shadow-small bordered uk-border-rounded background uk-flex uk-flex-top">
       <div class="square-50 uk-background-primary uk-border-rounded uk-flex uk-flex-column uk-flex-center uk-flex-middle">
         <span class="icon-tower uk-h3 uk-margin-remove uk-text-white"></span>
@@ -11,11 +11,11 @@
         <span class="uk-text-small">
           Available Colo Sites
         </span>
-
-        <nuxt-link class="uk-button uk-button-view uk-button-small uk-margin-small-top uk-margin-auto-right" :to="{name: 'locations'}">
-          View Sites
-        </nuxt-link>
       </div>
+
+      <nuxt-link class="uk-button uk-button-view uk-button-small uk-margin-small-top uk-margin-auto-right" :to="{name: 'locations'}">
+        View Sites
+      </nuxt-link>
 
     </div>
 
@@ -32,10 +32,10 @@
           Active Colo Requests
         </span>
 
-        <nuxt-link class="uk-button uk-button-view uk-button-small uk-margin-small-top uk-margin-auto-right" :to="{name: 'requests'}">
-          View Requests
-        </nuxt-link>
       </div>
+      <nuxt-link class="uk-button uk-button-view uk-button-small uk-margin-small-top uk-margin-auto-right" :to="{name: 'requests'}">
+        View Requests
+      </nuxt-link>
 
     </div>
 
@@ -53,10 +53,10 @@
           Approved Colo Requests
         </span>
 
-        <nuxt-link class="uk-button uk-button-view uk-button-small uk-margin-small-top uk-margin-auto-right" :to="{name: 'locations'}">
-          View Sites
-        </nuxt-link>
       </div>
+      <nuxt-link class="uk-button uk-button-view uk-button-small uk-margin-small-top uk-margin-auto-right" :to="{name: 'locations'}">
+        View Sites
+      </nuxt-link>
 
     </div>
 

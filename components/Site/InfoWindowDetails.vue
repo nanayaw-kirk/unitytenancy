@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="tiny-padding">
-			<colo-actions-request></colo-actions-request>
+			<colo-actions-request :site="{id : info.id, location_id : info.location_id, name: info.name, district : info.district, zone: info.zone, lat:info.lat, lon: info.lon}"></colo-actions-request>
 		</div>
 
 	<!-- 	

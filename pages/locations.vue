@@ -34,14 +34,6 @@
 
     <div class="uk-width-1-1 uk-height-small rounded-top uk-inline">
 
-      <div class="uk-position-top-left tiny-padding click uk-position-z-index uk-border-rounded uk-flex uk-flex-column uk-flex-center uk-flex-middle">
-        <div class="chip background uk-box-shadow-xlarge uk-border-rounded">
-          <span class="text-small">
-           New Colo Request
-         </span>
-       </div>
-     </div>
-
      <div class="square-30 uk-position-top-right uk-background-danger uk-margin-small-top uk-margin-small-right click uk-position-z-index uk-border-rounded uk-flex uk-flex-column uk-flex-center uk-flex-middle" @click="destroyPreview">
       <span class="icon-close uk-text-white uk-text-large"></span>
     </div>
@@ -103,7 +95,7 @@ export default {
     }),
 
     serverLoading(){
-      return this.$store.getters['locations/loading'] || this.$store.getters['vehicles/loading']
+      return this.$store.getters['locations/loading']
     },
 
     controls(){
@@ -157,7 +149,7 @@ export default {
 
  async mounted(){
   await this.$store.dispatch('summary/getSummary')
-  await this.$store.dispatch('locations/connect')
+  await this.$store.dispatch('locations/getData')
 }
 }
 </script>

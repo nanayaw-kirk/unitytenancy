@@ -11,17 +11,15 @@
 					</nuxt-link>
 				</div>
 
-		<!-- 		<div class="nav-filters" v-if="$route.name === 'index'">
-					<navs-filters></navs-filters>
-				</div> -->
-
 				<div class="uk-flex uk-flex-right uk-flex-middle">
+					<template v-if="$route.name !== 'locations'">
+						<nuxt-link :to="{name: 'locations'}"  class="uk-button uk-button-small uk-button-primary uk-margin-right uk-visible@m">
+							Map View
+						</nuxt-link>
+					</template>
 
-
-					<nuxt-link :to="{name: 'locations'}" class="uk-flex uk-flex-middle uk-margin-right uk-visible@m">
-						<span>
-							Colo Sites
-						</span>
+					<nuxt-link v-else :to="{name: 'index'}"  class="uk-button uk-button-small uk-button-primary uk-margin-right uk-visible@m">
+						Back to Dashboard
 					</nuxt-link>
 					<div class="uk-margin-left uk-margin-right uk-flex uk-visible@m">
 						<span>
@@ -32,9 +30,7 @@
 						<theme-toggle></theme-toggle>
 					</div>
 
-				<!-- 	<div class="uk-margin-right">
-						<notification-bell></notification-bell>
-					</div> -->
+
 					<a href="#" @click.prevent="$auth.logout()" class="uk-flex uk-flex-middle">
 						<span class="icon-user uk-margin-small-right"></span>
 						<span class="uk-text-small">

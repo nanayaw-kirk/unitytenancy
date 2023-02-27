@@ -11,11 +11,8 @@ let Vue2FiltersConfig = {
 		includeNumber: true
 	}
 }
-Vue.filter('planize', function(text){
-	if (text.toLowerCase().includes('plan')) {
-		return text
-	}
-	return `${text} Plan`
+Vue.filter('clean', function(text){
+	return text.split('-').join(' ').split('_').join(' ').split('-').join(' ')
 })
 
 Vue.use(Vue2Filters, Vue2FiltersConfig)

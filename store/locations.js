@@ -48,26 +48,9 @@ export const getters = {
 }
 
 export const mutations = {
-	setConnected(state, value) {
-		state.connected = value
-	},
+	
 	setData(state, payload) {
 		state.locations = payload
-	},
-	setError(state, value) {
-		state.error = value
-	},
-
-	patch(state, payload){
-		let pin = state.locations.indexOf(state.locations.find((item, index)=> item.id === payload.id))
-		if (pin) {
-			Vue.set(state.locations, pin , payload)
-		}
-
-	},
-
-	setSocket(state, socket) {
-		state.socket = socket
 	},
 
 	setState(state, value){
@@ -92,56 +75,33 @@ export const actions = {
 		commit('setData', payload)
 	},
 
-	patch({commit}, payload){
-		commit('patch', payload)
-	},
-
-	connect({ commit }) {
+	async getData({commit}){
 		commit('setState', true)
-		const socket = new WebSocket(`${this.$config.WS}/location/?token=${this.$auth.strategy.token.get().slice(6)}`)
-		socket.onopen = () => {
-			commit('setConnected', true)
-			commit('setSocket', socket)
-		}
-
-		socket.onmessage =  (event) => {
-
-			let payload = JSON.parse(event.data)
-			
-			if(payload.is_alert){
-				commit('patch', payload.message)
-				commit('notifications/SET_NOTIFS', {from : 'site', ...payload} , {root : true})
-			}
-
-			else{
-				commit('setData', payload.message)
-			}
-
-
+		await this.$axios.$get(`/netmap/location`)
+		.then(res=>{
+			commit('setData', res)
+		})
+		.catch(err => {
+			console.log(err)
+		})
+		.finally(()=>{
 			commit('setState', false)
-		}
-
-		socket.onerror = (event) => {
-			commit('setError', event)
-			commit('setState', false)
-		}
-
-		socket.onclose = (event) => {
-			commit('setSocket', null)
-			commit('setState', false)
-		}
+		})
 	},
 
-	applyFilter({commit}, payload){
-		payload.add ? commit('APPLY_FILTER', payload) : commit('REMOVE_FILTER', payload.key)
+	async searchLocations({commit}, query){
+		commit('setState', true)
+		await this.$axios.$get(`/netmap/location?${query}`)
+		.then(res=>{
+			commit('setData', res)
+		})
+		.catch(err => {
+			console.log(err)
+		})
+		.finally(()=>{
+			commit('setState', false)
+		})
 	},
-
-	applySearch({commit}, payload){
-		commit('SET_SEARCH', payload)
-	},
-	clearSearch({commit}){
-		commit('SET_SEARCH', '')
-	}
 }
 
 
