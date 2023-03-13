@@ -91,7 +91,7 @@ export const actions = {
 
 	async searchLocations({commit}, query){
 		commit('setState', true)
-		await this.$axios.$get(`/netmap/location?${query}`)
+		await this.$axios.$get(`/netmap/location/colo_search?${query}`)
 		.then(res=>{
 			commit('setData', res)
 		})

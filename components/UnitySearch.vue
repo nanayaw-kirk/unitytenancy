@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="tiny-padding border-bottom uk-flex uk-flex-middle">
-			<div class="uk-width-expand uk-flex uk-flex-column  tiny-margin-right  tiny-padding uk-padding-remove-vertical uk-padding-remove-horizontal">
+			<div class="uk-width-expand uk-flex uk-flex-column  tiny-padding uk-padding-remove-vertical uk-padding-remove-horizontal">
 				<div class="uk-width-1-1 uk-inline">
 					<!-- <input type="text" v-model="searchTerm" class="uk-input" placeholder="Search for towers & vehicles" @keyup.enter="searchSites"> -->
 
@@ -15,18 +15,23 @@
 
 
 
-			
+<!-- 			
 
 			<div class="square-35 uk-border-circle uk-flex uk-flex-column uk-flex-middle uk-flex-center" :class="(place && place.lon  && place.lat)? 'uk-button-primary click' : 'background disabled'" @click="(place && place.lon  && place.lat) ? searchSites() : ''">
 				<span class="icon-search uk-text-large uk-text-color"></span>
-			</div>
+			</div> -->
 		</div>
-		<div class="uk-flex tiny-padding">
-			<span class="chip bordered uk-margin-auto-right uk-border-rounded tiny-margin-top">
-				<small>
-					Advanced Search
-				</small>
-			</span>
+		<div class="uk-flex uk-flex-middle tiny-padding">
+			<small class="uk-margin-auto-right">
+				Modify Search Radius
+			</small>
+			<input type="number" class="uk-input uk-text-center" style="max-width:100px" placeholder="Radius" v-model="radius">
+		</div>
+
+		<div class="uk-flex uk-flex-middle tiny-padding border-top">
+			<button class="uk-button uk-button-primary uk-width-medium uk-margin-auto" :disabled="searching || !place"  @click="(place && place.lon  && place.lat) ? searchSites() : ''" :class="searching ? 'loading' : ''">
+				Search
+			</button>
 		</div>
 
 
@@ -41,13 +46,19 @@ export default {
 			vehicles : true,
 			sites : true,
 			place : undefined,
-			autoCompleteKey : false
+			autoCompleteKey : false,
+			radius : 20,
+			searching : false
 		}
 	},
 
 	methods : {
 		async searchSites(){
-			await this.$store.dispatch('locations/searchLocations', `lat=${this.place.lat}&lon=${this.place.lon}&radius=20`)
+			this.searching = true
+			await this.$store.dispatch('locations/searchLocations', `lat=${this.place.lat}&lon=${this.place.lon}&radius=${this.radius}`)
+			.finally(()=>{
+				this.searching = false
+			})
 		},
 
 		async clearSearch(){
