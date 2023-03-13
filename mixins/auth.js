@@ -21,8 +21,8 @@ const login = {
 	data(){
 		return {
 			form : {
-				username : 'nanayaw',
-				password : 'D3v@4321',
+				username : '',
+				password : '',
 			}
 		}
 	},
